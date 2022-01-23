@@ -1,0 +1,161 @@
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    
+}
+.header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: #5e5373;
+    // выводим плажку поверх зеленого фона
+    z-index: 2;
+}
+// вытащил контент на верний слой
+.header__body {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+}
+
+.header__logo{
+    position: relative;
+    z-index:3;
+}
+  .logo__img img{
+    min-width: 50px;
+    max-width: 50px;
+    position: relative;
+    z-index: 5;
+  }
+
+
+.header__list {
+    display: flex;
+    position: relative;
+    z-index: 2;
+   
+}
+.header__list li{
+    list-style: none;
+    margin: 0px 0px 0px 20px;
+
+}
+.header__link {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+
+}
+@media (max-width:767px){
+    // отобрал возможность прокрутки с открытым бургером
+    body.lock{
+        overflow: hidden;
+    }
+    .logo__img img{
+        min-width: 35px;
+        max-width: 35px;
+        
+      }
+    .header__body {
+        height: 50px;
+    }
+    .header__burger{
+        display:block;
+        position: relative;
+        width:30px;
+        height: 20px;
+        position: relative;
+        z-index:3;
+    }
+    .header__burger span{
+        position: absolute;
+        background-color: #fff;
+        left:0;
+        width: 100%;
+        height:2px;
+        top:9px;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger::before,
+    .header__burger::after{
+        content: '';
+        position: absolute;
+        width: 100%;
+        background-color: #fff;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+    }
+    .header__burger::before{
+        top:0;
+    }
+    .header__burger::after{
+        bottom:0;
+    }
+    // это выпадашка бургера с другим цветом при экране меньше 767px
+    // -100%делал в конце что бы было видно выпадашку
+    // overflow: auto; при горизонтальном положении телефона добавит в бургер скрол
+    .header__menu {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+        background-color: #18b5a4;
+        padding: 70px 10px 20px 10px;
+        transition: all 0.4s ease 0s;
+    }
+    .header__list {
+        display: block;
+    }
+    .header__list li{
+        list-style: none;
+        margin: 0px 0px 20px 0px;
+    
+    }
+}
+// изменения при нажатии,повороты
+.header__burger.active::before{
+    transform: rotate(45deg);
+    top: 9px;
+}
+.header__burger.active::after{
+    transform: rotate(-45deg);
+    bottom:9px;
+}
+.header__burger.active span{
+    transform: scale(0);
+
+}
+.header__menu.active {
+    top:0;
+}    
+
+
+
+
+// для наглядности
+
+.content__text {
+    font-size: 16px;
+    line-height: 20px;
+    padding-top: 100px;
+
+}
+@media (max-width:767px){
+    .content__text {
+        font-size: 16px;
+        line-height: 20px;
+        padding-top: 60px;
+    
+    }
+}
